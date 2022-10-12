@@ -95,7 +95,7 @@ router.post('/add-article', async function(req, res, next) {
 //     res.json({result, alreadyExist, error});
 // })
 
-// ver 2. Chargement des article (avec DB)
+// ver 2. Chargement des articleList avec source (avec DB)
 router.post('/get-articleList', async function(req, res, next) {
 
     let error = [];
@@ -108,6 +108,24 @@ router.post('/get-articleList', async function(req, res, next) {
         let foundArticleList = await articleListModel.find({ id: articleId});
         console.log(foundArticleList)
         return res.json({result: true, articleList: foundArticleList})
+    }
+    catch (err) {
+        return res.json({ result: false, error: JSON.stringify(err) })
+    }
+})
+
+// ver 2. Chargement des article (avec DB)
+router.post('/get-article', async function(req, res, next) {
+
+    let error = [];
+    let result = false;
+
+    let userId = req.body.userId;
+
+    try {
+        let foundUser = await userModel.findOne({ token: userId});
+        let foundArticle = foundUser.articles
+        return res.json({result: true, myArticles: foundArticle})
     }
     catch (err) {
         return res.json({ result: false, error: JSON.stringify(err) })
