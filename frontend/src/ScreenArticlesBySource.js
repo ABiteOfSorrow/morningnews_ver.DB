@@ -36,7 +36,7 @@ function ScreenArticlesBySource(props) {
         setArticleDesc(article.description);
         setArticleImg(article.urlToImage);
         props.addToWishList(article);
-        setArticleId(article.source.id)
+        // setArticleId(article.source.id) (option pour contenus)
     }
 
     // Controleur Modal

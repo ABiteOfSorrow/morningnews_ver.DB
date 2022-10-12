@@ -92,7 +92,7 @@ function ScreenHome(props) {
         {/* SIGN-IN */}
 
         <div className="Sign">        
-                <Input className="Login-input" placeholder="arthur@lacapsule.com" 
+                <Input className="Login-input" placeholder="arthur@gmail.com" 
                     onChange={(e) => setSignInEmail(e.target.value)} value={signInEmail}/>
 
                 <Input.Password className="Login-input" placeholder="password" 
