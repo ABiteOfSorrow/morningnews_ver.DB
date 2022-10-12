@@ -8,7 +8,13 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 require("./models/connection");
+
 var app = express();
+
+const cors = require("cors");
+app.use(cors());
+
+const PORT = process.env.PORT || 5000;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -18,7 +24,17 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '/reactapp/build')));
+app.use(express.static('build'));
+
+app.get("*", function (req, res) {
+    res.sendFile(path.resolve(__dirname + "build", "index.html"));
+  });
+  
+  app.listen(PORT, () => {
+    console.log(`server running on port ${PORT}`);
+  });
+  
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
