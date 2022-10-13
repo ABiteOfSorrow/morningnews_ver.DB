@@ -25,12 +25,12 @@ function ScreenArticlesBySource(props) {
     const [articleTitle, setArticleTitle] = useState("");
     const [articledesc, setArticleDesc] = useState("");
     const [articleImg, setArticleImg] = useState("");
-    const [articleId, setArticleId] = useState("");
+    // const [articleId, setArticleId] = useState("");
 
     // Ajouter des articles au MyArticle
     let handleLike = (article) => {
         // console.log(props)
-        console.log(article)
+        // console.log(article)
         setUserId(props.user)
         setArticleTitle(article.title);
         setArticleDesc(article.description);
@@ -80,7 +80,6 @@ function ScreenArticlesBySource(props) {
             });
     
             const articleData = await data.json();
-            console.log(articleData.articleList)
          if (articleData) {   
             console.log("Article est bien chargé")
             setArticleList(articleData.articleList)
@@ -105,10 +104,6 @@ function ScreenArticlesBySource(props) {
     
             if (articleData === true){
                 console.log("Article est bien enregistré")
-            } else {
-                console.log(articleData.error);
-                setModalDescription(articleData.error.join(", "))
-                showModal()
             }
         }
         addArticles();

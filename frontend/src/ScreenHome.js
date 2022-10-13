@@ -65,7 +65,6 @@ function ScreenHome(props) {
         });
 
         const userData = await data.json();
-
         if (userData.result === true) {
             console.log("Connexion Réussie")
             // console.log(userData)

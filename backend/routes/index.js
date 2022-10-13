@@ -24,13 +24,13 @@ router.post('/add-article', async function(req, res, next) {
         console.log(req.body)
 
     let foundArticle = await userModel.findOne({ token: userId }, { articles: { title: articleTitle }});
-    let duplicateCheck = foundArticle.articles.find((e) => e.title == articleTitle);
+
 
     if (articleTitle == "" || articleDesc == "" || articleImg == "") {
         error.push("Contenus vides");
     } 
     
-    if (duplicateCheck === true) {
+    if (foundArticle === true) {
         error.push("Cet article est déjà existe");
         alreadyExist = true;
     } 
@@ -142,7 +142,7 @@ router.post('/delete-article', async function(req, res, next) {
     let articleTitle = req.body.articleTitle;
 
     try {
-        let deleteArticle = await userModel.update({ token: userId }, {$pull: { articles: { title: articleTitle }}},{
+        let deleteArticle = await userModel.updateMany({ token: userId }, {$pull: { articles: { title: articleTitle }}},{
             multi: true})
         let foundUser = await userModel.findOne({ token: userId});
         let foundArticle = foundUser.articles

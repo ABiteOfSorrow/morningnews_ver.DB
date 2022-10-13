@@ -62,7 +62,7 @@ router.post('/sign-up', async function(req, res, next) {
             console.log(err);
         }
     
-        res.json({result, alreadyExist, error});
+    return res.json({result, alreadyExist, error});
 })
 
 
@@ -98,7 +98,7 @@ router.post('/sign-in', async function(req, res, next) {
             console.log(err);
         }
         
-    res.json({result, userId, error});
+    return res.json({result, userId, error});
 })
 
 
