@@ -105,6 +105,10 @@ function ScreenArticlesBySource(props) {
     
             if (articleData === true){
                 console.log("Article est bien enregistré")
+            } else {
+                console.log(articleData.error);
+                setModalDescription(articleData.error.join(", "))
+                showModal()
             }
         }
         addArticles();
