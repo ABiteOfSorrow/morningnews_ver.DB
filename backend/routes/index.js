@@ -24,13 +24,13 @@ router.post('/add-article', async function(req, res, next) {
         console.log(req.body)
 
     let foundArticle = await userModel.findOne({ token: userId }, { articles: { title: articleTitle }});
-
+    let duplicateCheck = foundArticle.articles.find((e) => e.title == articleTitle);
 
     if (articleTitle == "" || articleDesc == "" || articleImg == "") {
         error.push("Contenus vides");
     } 
     
-    if (foundArticle === true) {
+    if (duplicateCheck === true) {
         error.push("Cet article est déjà existe");
         alreadyExist = true;
     } 
