@@ -36,6 +36,7 @@ function ScreenArticlesBySource(props) {
         setArticleDesc(article.description);
         setArticleImg(article.urlToImage);
         props.addToWishList(article);
+        addArticles()
         // setArticleId(article.source.id) (option pour contenus)
     }
 
@@ -91,9 +92,9 @@ function ScreenArticlesBySource(props) {
     }, []);
 
     // Ajouter des articles
-    useEffect(() => {
-        async function addArticles(){
-
+    // useEffect(() => {
+    //     async function addArticles(){
+    let addArticles = async () => {
             let data = await fetch("/add-article", {
                 method: "post",
                 headers: { "Content-Type": "application/x-www-form-urlencoded"},
@@ -106,8 +107,8 @@ function ScreenArticlesBySource(props) {
                 console.log("Article est bien enregistré")
             }
         }
-        addArticles();
-    }, [ handleLike ]);
+    //     addArticles();
+    // }, [ handleLike ]);
 
 
     // // Ajouter des articles pour API -> DB (option pour contenus)
