@@ -30,7 +30,7 @@ router.post('/add-article', async function(req, res, next) {
         error.push("Contenus vides");
     } 
     
-    if (foundArticle === true) {
+    if (foundArticle) {
         error.push("Cet article est déjà existe");
         alreadyExist = true;
     } 
